@@ -1,0 +1,30 @@
+
+
+
+<div class = "container text-center mt-3">
+  <div class = "row d-flex justify-content-center">
+    <div class = "col-5">
+      <h1>Make a list</h1>
+      <%= simple_form_for(@list) do |f| %>
+        <%= f.input :name%>
+        <%= f.submit%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div>
+<h2>Your Lists</h1>
+  <%@lists.each do |list|%>
+      <% unless list.movies[0].nil?%>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://image.tmdb.org/t/p/w500<%=list.movies[0].poster_url%>)">
+          <%=link_to list.name, list_path(list)%>
+          <%=render "list_dropup", list: list%>
+          <%else %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1718&q=80)">
+        <%=link_to list.name, list_path(list)%>
+        </div>
+        <%end%>
+        </div>
+      <%end%>
+</div>
